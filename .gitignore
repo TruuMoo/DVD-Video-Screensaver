@@ -12,6 +12,8 @@
 
 *.sln
 *.vxproj
+*.vcxproj
+*.vcxproj.filters
 *.vxproj.filters
 *.vxproj.user
 

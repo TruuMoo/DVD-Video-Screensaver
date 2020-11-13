@@ -1,8 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
-/* define this if you're running the file in Visual Studio */
-//#define RUNNING_IN_VS   
 
 #define STARTING_X_POSITION 400
 #define STARTING_Y_POSITION 400
@@ -37,11 +35,15 @@ int main()
     sf::Texture texture;
     sf::Sprite sprite;
 
-    #ifndef RUNNING_IN_VS
-        texture.loadFromFile("../img/dvdLogo.png");
-    #else
-        texture.loadFromFile("./img/dvdLogo.png");
-    #endif
+    /* Check 2 different locations for the image*/
+    if (!texture.loadFromFile("dvdLogo.png")) { 
+        std::cout << "Trying a different file location.." << std::endl;
+        if (!texture.loadFromFile(".\\Release\\dvdLogo.png")) {
+            std::cerr << "ERROR: COULD NOT LOAD LOGO FILE!!!!" << std::endl;
+        }
+        else { std::cout << "Found it!" << std::endl; }
+    }
+
             
 
     sprite.setTexture(texture);
